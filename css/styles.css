@@ -1,3 +1,30 @@
 body {
-	background-color: black;
+	/*background-image: url("../images/clock2.jpg");*/
+	margin: 0;
+
 }
+
+/* Navigation */
+
+#site-header .topnav {
+  background-image: url("../images/navbarbg.jpg");
+  overflow: hidden;
+  padding: 15px;
+}
+
+/* Main Canvas */
+.container{
+	width: 400px;
+	height: 400px;
+	border: 1px solid red;
+	margin: 0 auto;
+	text-align: center;
+}
+
+#canvas{
+	border: 1px solid blue;
+	background-color: #333;
+}
+
+
+
