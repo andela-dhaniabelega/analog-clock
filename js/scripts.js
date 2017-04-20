@@ -89,12 +89,13 @@ function check() {
     window.onload = setInterval(getCountryTime,1000);
 }
 
-
-
-
-
-
-
+function larg(can){
+    $(window).resize(function () {
+        width = $(can).parent().width();
+        can.width = width;
+        canCtx.fillRect(0, 0, width, 410);
+    });
+}
 
         function showClock(date) {
 
@@ -104,7 +105,8 @@ function check() {
 
             
             var angle;
-            var secHandLength = 155;
+            var secHandLength = 185;
+
 
             // CLEAR EVERYTHING ON THE CANVAS. RE-DRAW NEW ELEMENTS EVERY SECOND.
             ctx.clearRect(0, 0, canvas.width, canvas.height);        

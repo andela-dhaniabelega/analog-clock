@@ -1,7 +1,21 @@
 body {
-	background-image: url("../images/clock6 copy.jpg");
 	margin: 0;
+}
+/*Main CSS*/
+.main{
+	background-image: url("../images/clock6.jpg");
+	position: relative;
+	/*background-repeat:no-repeat;*/
+	padding-top: 220px;
+	-webkit-background-size:cover;
+	-moz-background-size:cover;
+	-o-background-size:cover;
+	background-size:cover;
+	background-position:center;
+}
 
+.main .time-zone-opts{
+	padding: 5px !important;
 }
 
 /* Navigation */
@@ -18,16 +32,40 @@ body {
 	height: 400px;
 	/*border: 1px solid red;*/
 	border: none;
-	margin-left: 47%;
-	padding-top:25px;
+	padding-top:15px;
 	text-align: center;
+}
+
+.container .clock{
+	/*margin-top: -200px;
+	margin-left: 690px;*/
+	position:absolute;
+    left:54%;
+    top:5%;
+    max-width: 10%;
 }
 
 #canvas{
 	/*border: 1px solid blue;*/
 	border: none;
+	max-width: 100%;
+    height: auto;
 	/*background-color: #333;*/
 }
 
+/* Banner */
+.banner{
+	float: left;
+
+}
+
+.banner0{
+	background: url("../images/banners/");
+
+}
+
+.banner1{
+
+}
 
 
