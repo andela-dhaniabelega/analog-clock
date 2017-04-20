@@ -7,22 +7,9 @@
   <title>Analog Clock App</title>
   <meta name="description" content="Andela - Analog Clock App">
   <meta name="author" content="Andela Boot Camp">
-
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
   <link rel="stylesheet" href="css/styles.css">
-   <script src="js/scripts.js"></script>
-
-<!--
-   	var deviceTimeZone = document.getElementById("dom-target-devicetimezone").textContent.trim();
-	var deviceNow = moment.tz(deviceTimeZone);
-	var time = deviceNow.format('h:mmA');
-	document.getElementById('clock').innerHTML = time;
-
--->
-
-
-
-
-
+  <script src="js/scripts.js"></script>
 
 </head>
 
@@ -37,9 +24,54 @@
 	<div id="main">
 		
 		<div class="container">
-			<canvas id="canvas" width="400" height="400"></canvas> 
+			<canvas id="canvas" width="350" height="350"></canvas> 
+
+
 		</div>
 	
+
+		<!-- TEST CODE --> 
+
+		<div  class="time-zone-opts">
+					<label for="Time-Zone">Time-Zone:</label>
+					<select name="zones" id="timeZones">
+                        <option value="0" id="wat">Tokyo, Japan</option>
+						<option value="1" id="cet">New York, US</option>
+						<option value="2" id="cst">SaoPaolo, Brazil</option>
+						<option value="3" id="eat">East Afircan Time</option>
+						<option value="4" id="edt">Eastern Daylight Time</option>
+                        <option value="5" id="fijiTime">Fiji Time</option>
+						<option value="6" id="gmt">GMT - Greenwich Mean Time</option>
+						<option value="7" id="norfolkTime">Norfolk Time</option>
+						<option value="8" id="nepalTime">Nepal Time</option>
+						<option value="9" id="pyongyangTime">Pyongyang Time</option>
+                        <option value="10" id="westSamoa">West Samoa Time</option>
+                        <option value="11" id="WAST">WAST - West Africa Summer Time</option>
+					</select>
+				</div>
+		<button class="btn" id="btnChange" onclick="check()">Change Time Zone</button>
+		<button class="btn" id="btnReverse"onclick="refresh()"><a href="index.html">Refresh</a></button>	
+
+		<div id="addInfo">
+
+
+				<button>Set text content for all p elements</button>
+
+				<p>This is a paragraph.</p>
+				<p>This is another paragraph.</p>
+
+			<span id="displayInfo"></span>
+
+			<!-- <span id="timeZoneName"></span>-->
+			<!--<span id="digitalTime"></span>-->
+			<!--<span id="dateTab"></span>-->
+			<!--<span id="offsetTab"></span>-->
+
+		</div>	
+
+		<!-- END TEST CODE -->		
+
+
 	</div>
 
  
