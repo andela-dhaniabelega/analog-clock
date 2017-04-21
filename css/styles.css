@@ -99,7 +99,7 @@ select {
 .banner-text{
 	font-size: 14px;
 	padding-left: 5px;
-	padding-top: 35px;
+	padding-top: 53px;
 }
 
 .time-zone-opts{
@@ -139,5 +139,9 @@ select {
 	background-color: #ffffff; 
 }
 
+.banner-text1{
+	padding-top: 50px;
+	padding-left: 5px;
+}
 
 

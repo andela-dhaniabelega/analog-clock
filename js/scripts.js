@@ -58,10 +58,10 @@ function getCountryTime(){
     var selectedCountryTime = finalDate.getHours() + ":" + finalDate.getMinutes() + ":" + finalDate.getSeconds();
 
 
-    document.getElementById('displayInfo').innerHTML = "The time in " + selectedCountry + " is: <b>" + 
+    document.getElementById('displayInfo').innerHTML = "<div style = 'padding-top:5px; padding-left:1px'>The time in " + selectedCountry + " is: <b>" + 
     selectedCountryTime + "</b>. It is " + presentDay + ", " + presentMonth + " " +
      presentDate + "th" + " " + presentYear + ". " + selectedCountry + " is on the <b>" + timeZoneName + 
-     "</b> time zone.";
+     "</b> time zone. </div>";
    
 
     showClock(finalDate);
