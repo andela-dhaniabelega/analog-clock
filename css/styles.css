@@ -63,6 +63,7 @@ select {
 .main .side-banners-1{
 	position: absolute;
 	top: 12%;
+	margin: 15px;
 
 }
 
@@ -87,6 +88,7 @@ select {
 	background: #C6CC10 url("../images/banners/banner5.png") no-repeat;
 	color: #37535B;
 	font-family: "Trebuchet MS";
+	margin-right: 5px;
 
 }
 

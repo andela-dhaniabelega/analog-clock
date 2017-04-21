@@ -54,13 +54,13 @@ function getCountryTime(){
     var presentDay = days[finalDate.getDay()];
     var presentMonth = months[finalDate.getMonth()];
     var presentDate = finalDate.getDate();
-    var presentYear = finalDate.getYear();
+    var presentYear = finalDate.getFullYear();
     var selectedCountryTime = finalDate.getHours() + ":" + finalDate.getMinutes() + ":" + finalDate.getSeconds();
 
 
     document.getElementById('displayInfo').innerHTML = "<div style = 'padding-top:5px; padding-left:1px'>The time in " + selectedCountry + " is: <b>" + 
     selectedCountryTime + "</b>. It is " + presentDay + ", " + presentMonth + " " +
-     presentDate + "th" + " " + presentYear + ". " + selectedCountry + " is on the <b>" + timeZoneName + 
+     presentDate + " " + presentYear + ". " + selectedCountry + " is on the <b>" + timeZoneName + 
      "</b> time zone. </div>";
    
 
