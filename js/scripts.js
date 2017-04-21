@@ -67,7 +67,6 @@ function getCountryTime(){
     var presentYear = finalDate.getFullYear();
     var selectedCountryTime = finalDate.getHours() + ":" + finalDate.getMinutes() + ":" + finalDate.getSeconds();
 
-
     document.getElementById('displayInfo').innerHTML = "<div style = 'padding-top:5px; padding-left:1px'>The time in " + selectedCountry + " is: <b>" + 
     selectedCountryTime + "</b>. It is " + presentDay + ", " + presentMonth + " " +
      presentDate + " " + presentYear + ". " + selectedCountry + " is on the <b>" + timeZoneName + 
@@ -133,6 +132,8 @@ function larg(can){
             var angle;
             var secHandLength = 185;
 
+            var nightHours = date.getHours();
+
 
             // CLEAR EVERYTHING ON THE CANVAS. RE-DRAW NEW ELEMENTS EVERY SECOND.
             ctx.clearRect(0, 0, canvas.width, canvas.height);        
@@ -147,10 +148,18 @@ function larg(can){
             SHOW_HOURS();
 
             function OUTER_DIAL1() {
-                ctx.fillStyle= "#ffffff";
-                ctx.beginPath();
-                ctx.arc(canvas.width / 2, canvas.height / 2, canvas.width / 2 , 0, Math.PI * 2);
-                ctx.fill();
+
+                if ((nightHours>=0 && nightHours<=6) || (nightHours>=18 && nightHours<=23)){    
+                    ctx.fillStyle= "#000000";
+                    ctx.beginPath();
+                    ctx.arc(canvas.width / 2, canvas.height / 2, canvas.width / 2 , 0, Math.PI * 2);
+                    ctx.fill();
+                }else{
+                    ctx.fillStyle= "#ffffff";
+                    ctx.beginPath();
+                    ctx.arc(canvas.width / 2, canvas.height / 2, canvas.width / 2 , 0, Math.PI * 2);
+                    ctx.fill();
+                }
             }
             
             function CENTER_DIAL() {
