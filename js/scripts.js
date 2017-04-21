@@ -16,8 +16,18 @@ window.onload = function () {
 
 var timeZoneOffsets = {
     "WAT": [1,"UTC+1"],
-    "CET": [1,"UTC+1"],
-    "CST": [-6,"UTC-6"]
+    "CST": [8,"UTC+8"],
+    "CEST": [2,"UTC+2"],
+    "JST": [9,"UTC+9"],
+    "EDT": [-4,"EDT-4"],
+    "KST": [9,"UTC+9"],
+    "ICT": [7,"UTC+7"],
+    "BST": [1,"UTC+1"],
+    "SGT": [8,"UTC+8"],
+    "MYT": [8,"UTC+8"],
+    "TRT": [3,"UTC+3"],
+    "NZST": [12,"UTC+12"],
+    "GST": [4,"UTC+4"]
 }
 
 
@@ -72,9 +82,25 @@ function getCountryTime(){
 
  function returnTimeZoneOffset(value) {
     switch(value){
-        case 0: return timeZoneOffsets.WAT;
-        case 1: return timeZoneOffsets.CET;
-        case 2: return timeZoneOffsets.CST;
+        case 0: return timeZoneOffsets.JST;
+        case 1: return timeZoneOffsets.EDT;
+        case 2: return timeZoneOffsets.KST;
+        case 3: return timeZoneOffsets.CST;
+        case 4: return timeZoneOffsets.ICT;
+        case 5: return timeZoneOffsets.WAT;
+        case 6: return timeZoneOffsets.BST;
+        case 7: return timeZoneOffsets.CEST;
+        case 8: return timeZoneOffsets.SGT;
+        case 9: return timeZoneOffsets.MYT;
+        case 10: return timeZoneOffsets.TRT;
+        case 11: return timeZoneOffsets.CEST;
+        case 12: return timeZoneOffsets.CEST;
+        case 13: return timeZoneOffsets.CEST;
+        case 14: return timeZoneOffsets.CST;
+        case 15: return timeZoneOffsets.NZST;
+        case 16: return timeZoneOffsets.CEST;
+        case 17: return timeZoneOffsets.CEST;
+        case 19: return timeZoneOffsets.GST;
       }
 }
 
