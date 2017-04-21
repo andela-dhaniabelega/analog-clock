@@ -1,11 +1,12 @@
 
 var id;
-var curDate = new Date;
 
+var mycurDate = new Date;
 window.onload = function () {
         id = setInterval(showClockOnLoad, 1000);
         displayCurrentInfo();
         function showClockOnLoad() {
+        var curDate = new Date;
         showClock(curDate);
     }
 }     
@@ -14,11 +15,11 @@ function displayCurrentInfo(){
 
     var selectedCountry = "Lagos";
     var timeZoneName = "UTC+1";
-    var presentDay = days[curDate.getDay()];
-    var presentMonth = months[curDate.getMonth()];
-    var presentDate = curDate.getDate();
-    var presentYear = curDate.getFullYear();
-    var selectedCountryTime = curDate.getHours() + ":" + curDate.getMinutes() + ":" + curDate.getSeconds();
+    var presentDay = days[mycurDate.getDay()];
+    var presentMonth = months[mycurDate.getMonth()];
+    var presentDate = mycurDate.getDate();
+    var presentYear = mycurDate.getFullYear();
+    var selectedCountryTime = mycurDate.getHours() + ":" + mycurDate.getMinutes() + ":" + mycurDate.getSeconds();
 
     document.getElementById('displayInfo').innerHTML = "<div style = 'padding-top:5px; padding-left:1px'>The time in " + selectedCountry + " is: <b>" + 
     selectedCountryTime + "</b>. It is " + presentDay + ", " + presentMonth + " " +

@@ -9,7 +9,7 @@ select {
 }
 
 table{
-	padding-top: 180px;
+	padding-top: 30px;
 	padding-left: 60px;
 	padding-right:10px;
 	padding-bottom: 20px;
@@ -53,13 +53,15 @@ p{
 	text-shadow: 0 -1px 1px rgba(0,0,0,0.25);
 	margin-top: -380px;
 	margin-left: 15px;
+	margin-bottom: 40px;
 	padding-top: 10px;
 	position: absolute;
 }
 
 .welcome a{
 	text-decoration: none;
-	color: #37535B;
+	color: #37535B;;
+	font-size: 18px;
 }
 /* Navigation */
 
@@ -184,6 +186,17 @@ p{
 }
 
 /* MULTIPLE CLOCK PAGE */
+.logo-multiple{
+	padding: 30px;
+}
+.logo-multiple a{
+	text-decoration: none;
+	font-size: 38px;
+	font-family: "Trebuchet MS";
+	text-shadow: 0 -1px 1px rgba(0,0,0,0.25);
+	color: #999;
+}
+
 .clocks-main{
 	background-image: url("../images/clock1.jpg");
 	position: relative;
