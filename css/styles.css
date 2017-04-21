@@ -1,3 +1,5 @@
+
+/* HTML Elements */
 body {
 	margin: 0;
 }
@@ -30,7 +32,9 @@ tr.spacer{
 p{
 	padding-bottom: 5px;
 }
-/*Main CSS*/
+
+/* Main CSS */
+
 .main{
 	background-image: url("../images/clock6.jpg");
 	position: relative;
@@ -63,27 +67,18 @@ p{
 	color: #37535B;;
 	font-size: 18px;
 }
-/* Navigation */
 
-#site-header .topnav {
-  background-image: url("../images/navbarbg.jpg");
-  overflow: hidden;
-  padding: 15px;
-}
 
 /* Main Canvas */
 .container{
 	width: 400px;
 	height: 400px;
-	/*border: 1px solid red;*/
 	border: none;
 	padding-top:15px;
 	text-align: center;
 }
 
 .container .clock{
-	/*margin-top: -200px;
-	margin-left: 690px;*/
 	position:absolute;
     left:54%;
     top:5%;
@@ -91,14 +86,13 @@ p{
 }
 
 #canvas{
-	/*border: 1px solid blue;*/
 	border: none;
 	max-width: 100%;
     height: auto;
-	/*background-color: #333;*/
 }
 
 /*Side Bar Widgets*/
+
 .main .side-banners-1{
 	position: absolute;
 	top: 12%;
@@ -112,7 +106,8 @@ p{
 	
 }
 
-/* Banner */
+/* Banners */
+
 .banner{
 	width:270px;
 	height: 300px; 
@@ -147,7 +142,7 @@ p{
 	background: url(http://i62.tinypic.com/15xvbd5.png) no-repeat 96% 0;
     height: 29px;
     width: 240px;
-    /*overflow: hidden;*/
+    
 }
 
 .time-zone-opts select {
@@ -186,6 +181,7 @@ p{
 }
 
 /* MULTIPLE CLOCK PAGE */
+
 .logo-multiple{
 	padding: 30px;
 }
@@ -200,7 +196,6 @@ p{
 .clocks-main{
 	background-image: url("../images/clock1.jpg");
 	position: relative;
-	/*background-repeat:no-repeat;*/
 	-webkit-background-size:cover;
 	-moz-background-size:cover;
 	-o-background-size:cover;

@@ -1,6 +1,5 @@
 
 var id;
-
 var mycurDate = new Date;
 window.onload = function () {
         id = setInterval(showClockOnLoad, 1000);
@@ -10,23 +9,6 @@ window.onload = function () {
         showClock(curDate);
     }
 }     
-
-function displayCurrentInfo(){
-
-    var selectedCountry = "Lagos";
-    var timeZoneName = "UTC+1";
-    var presentDay = days[mycurDate.getDay()];
-    var presentMonth = months[mycurDate.getMonth()];
-    var presentDate = mycurDate.getDate();
-    var presentYear = mycurDate.getFullYear();
-    var selectedCountryTime = mycurDate.getHours() + ":" + mycurDate.getMinutes() + ":" + mycurDate.getSeconds();
-
-    document.getElementById('displayInfo').innerHTML = "<div style = 'padding-top:5px; padding-left:1px'>The time in " + selectedCountry + " is: <b>" + 
-    selectedCountryTime + "</b>. It is " + presentDay + ", " + presentMonth + " " +
-     presentDate + " " + presentYear + ". " + selectedCountry + " is on the <b>" + timeZoneName + 
-     "</b> time zone. </div>";
-
-}
 
 var days = ["Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"];
 var months = ["January", "February","March","April", "May", "June", "July", "August", "September", "October", "November", "December"];
@@ -48,52 +30,30 @@ var timeZoneOffsets = {
 }
 
 
+/**
+  * Displays Current Location Information in the info Tab
+  */
+function displayCurrentInfo(){
 
-function getCountryTime(){
-    var timeZoneElement = document.getElementById("timeZones");
-    var timeZone = Number(timeZoneElement.value);
-    var tZoneoffset = returnTimeZoneOffset(timeZone);
-    //OBTAIN THE CURRENT DATE AND TIME
-    var testDate = new Date;
-    var localTime = testDate.getTime();
-
-    //FIND THE LOCAL TIME-ZONE OFFSET AND MULTIPLY BY (60000) to convert from minutes to millissecconds
-    var localOffset = testDate.getTimezoneOffset() * 60000;
-
-    //OBTAIN THE CURRENT UTC TIME BY ADDING LOCAL TIME ZONE OFFSET TO THE LOCAL TIME
-    var utc = localOffset + localTime;
-    /*Note: localOffset might return positive or negative depending on if the
-        local time-zone is before or behinf the UTC time*/
-    var offset = tZoneoffset[0];
-    var timeZoneName = tZoneoffset[1];
-
-    var currentTimeInZone = utc + (3600000 * offset);
-    /*Note: 360000 represents a converting factor to convert from hours to milliseconds*/
-    //CHANGE CALCULATED TIME TO A READABLE DATE/TIME STRING
-    var finalDate = new Date(currentTimeInZone);
-
-    
-    
-    var selectedCountry = $('#timeZones option:selected').text();
-    var presentDay = days[finalDate.getDay()];
-    var presentMonth = months[finalDate.getMonth()];
-    var presentDate = finalDate.getDate();
-    var presentYear = finalDate.getFullYear();
-    var selectedCountryTime = finalDate.getHours() + ":" + finalDate.getMinutes() + ":" + finalDate.getSeconds();
+    var selectedCountry = "Lagos";
+    var timeZoneName = "UTC+1";
+    var presentDay = days[mycurDate.getDay()];
+    var presentMonth = months[mycurDate.getMonth()];
+    var presentDate = mycurDate.getDate();
+    var presentYear = mycurDate.getFullYear();
+    var selectedCountryTime = mycurDate.getHours() + ":" + mycurDate.getMinutes() + ":" + mycurDate.getSeconds();
 
     document.getElementById('displayInfo').innerHTML = "<div style = 'padding-top:5px; padding-left:1px'>The time in " + selectedCountry + " is: <b>" + 
     selectedCountryTime + "</b>. It is " + presentDay + ", " + presentMonth + " " +
      presentDate + " " + presentYear + ". " + selectedCountry + " is on the <b>" + timeZoneName + 
      "</b> time zone. </div>";
-   
 
-    showClock(finalDate);
+}
 
-
-  }
-
-
- function returnTimeZoneOffset(value) {
+/**
+  * Returns the time zone offset of the selected value
+  */
+function returnTimeZoneOffset(value) {
     switch(value){
         case 0: return timeZoneOffsets.JST;
         case 1: return timeZoneOffsets.EDT;
@@ -118,28 +78,18 @@ function getCountryTime(){
 }
 
 
-/* Stops the clock from appearing and disappearing */
+/** 
+ * Stops the clock from appearing and disappearing 
+ */
 function check() {
-    //var zonesElem = document.getElementById("outputTab").style;
-    //zonesElem.visibility = "visible";
-    //var temp = function() {return 1;}
-    //var temp = window.onload;
     clearInterval(id);
     window.onload = setInterval(getCountryTime,1000);
 }
 
-function clockLooper(){
-    var myArr = [];
-    $("input:checkbox[name=mult]:checked").each(function(){
-        myArr.push($(this).val());
-    });
 
-    for (i=0; i < myArr.LENGTH; i++){
-        setInterval(getCountryTime(myArr[i]));
-    }
-
-}
-
+/** 
+ * Resizes page elements when browser is resized
+ */
 function larg(can){
     $(window).resize(function () {
         width = $(can).parent().width();
@@ -148,169 +98,210 @@ function larg(can){
     });
 }
 
-        function showClock(date) {
 
-            // Canvas Set Up
-            var canvas = document.getElementById('canvas');
-            var ctx = canvas.getContext('2d');
+/**
+  * Calculates the time for selected location using time zone offset
+  */
+function getCountryTime(){
+    var getSelectedValue    = document.getElementById("timeZones");
+    var timeZone            = Number(getSelectedValue.value);
+    var offsetValue         = returnTimeZoneOffset(timeZone);
+    var testDate            = new Date;
+    var localTime           = testDate.getTime();
 
-            
-            var angle;
-            var secHandLength = 185;
-
-            var nightHours = date.getHours();
-
-
-            // CLEAR EVERYTHING ON THE CANVAS. RE-DRAW NEW ELEMENTS EVERY SECOND.
-            ctx.clearRect(0, 0, canvas.width, canvas.height);        
-
-            
-            OUTER_DIAL1();
-            CENTER_DIAL();
-            MARK_THE_HOURS();
-            MARK_THE_SECONDS();
-
-            SHOW_SECONDS();
-            SHOW_MINUTES();
-            SHOW_HOURS();
-
-
-            function OUTER_DIAL1() {
-
-                if ((nightHours>=0 && nightHours<=6) || (nightHours>=18 && nightHours<=23)){ 
-                    ctx.fillStyle= "#000000";   
-                } else {
-                    ctx.fillStyle= "#ffffff";
-                }
-                    ctx.beginPath();
-                    ctx.arc(canvas.width / 2, canvas.height / 2, canvas.width / 2 , 0, Math.PI * 2);
-                    ctx.fill();
-
-            }
-            
-            function CENTER_DIAL() {
-                ctx.beginPath();
-                ctx.arc(canvas.width / 2, canvas.height / 2, 2, 0, Math.PI * 2);
-                ctx.lineWidth = 3;
-                if ((nightHours>=0 && nightHours<=6) || (nightHours>=18 && nightHours<=23)){ 
-                    ctx.fillStyle = '#ffffff';
-                    ctx.strokeStyle = '#ffffff';
-                }else{
-                    ctx.fillStyle = '#000000';
-                    ctx.strokeStyle = '#000000';
-                }
-                ctx.stroke();
-            }
-
-            function MARK_THE_HOURS() {
-
-                for (var i = 0; i < 12; i++) {
-                    angle = (i - 3) * (Math.PI * 2) / 12;       // THE ANGLE TO MARK.
-                    ctx.lineWidth = 1;            // HAND WIDTH.
-                    ctx.beginPath();
-
-                    var x1 = (canvas.width / 2) + Math.cos(angle) * (secHandLength);
-                    var y1 = (canvas.height / 2) + Math.sin(angle) * (secHandLength);
-                    var x2 = (canvas.width / 2) + Math.cos(angle) * (secHandLength - (secHandLength / 7));
-                    var y2 = (canvas.height / 2) + Math.sin(angle) * (secHandLength - (secHandLength / 7));
-
-                    ctx.moveTo(x1, y1);
-                    ctx.lineTo(x2, y2);
-
-                    if ((nightHours>=0 && nightHours<=6) || (nightHours>=18 && nightHours<=23)){
-                        ctx.strokeStyle = '#ffffff';
-                    }else{
-                        ctx.strokeStyle = '#000000';
-                    }
-
-                    ctx.stroke();
-                }
-            }
-
-            function MARK_THE_SECONDS() {
-
-                for (var i = 0; i < 60; i++) {
-                    angle = (i - 3) * (Math.PI * 2) / 60;       // THE ANGLE TO MARK.
-                    ctx.lineWidth = 1;            // HAND WIDTH.
-                    ctx.beginPath();
-
-                    var x1 = (canvas.width / 2) + Math.cos(angle) * (secHandLength);
-                    var y1 = (canvas.height / 2) + Math.sin(angle) * (secHandLength);
-                    var x2 = (canvas.width / 2) + Math.cos(angle) * (secHandLength - (secHandLength / 30));
-                    var y2 = (canvas.height / 2) + Math.sin(angle) * (secHandLength - (secHandLength / 30));
-
-                    ctx.moveTo(x1, y1);
-                    ctx.lineTo(x2, y2);
-
-                    ctx.strokeStyle = '#C4D1D5';
-                    ctx.stroke();
-                }
-            }
-
-            function SHOW_SECONDS() {
-
-                var sec = date.getSeconds();
-                angle = ((Math.PI * 2) * (sec / 60)) - ((Math.PI * 2) / 4);
-                ctx.lineWidth = 0.5;              // HAND WIDTH.
-
-                ctx.beginPath();
-                // START FROM CENTER OF THE CLOCK.
-                ctx.moveTo(canvas.width / 2, canvas.height / 2);   
-                // DRAW THE LENGTH.
-                ctx.lineTo((canvas.width / 2 + Math.cos(angle) * secHandLength),
-                    canvas.height / 2 + Math.sin(angle) * secHandLength);
-
-                // DRAW THE TAIL OF THE SECONDS HAND.
-                ctx.moveTo(canvas.width / 2, canvas.height / 2);    // START FROM CENTER.
-                // DRAW THE LENGTH.
-                ctx.lineTo((canvas.width / 2 - Math.cos(angle) * 20),
-                    canvas.height / 2 - Math.sin(angle) * 20);
-
-                ctx.strokeStyle = '#D33C37';        // COLOR OF THE HAND.
-                ctx.stroke();
-            }
-
-            function SHOW_MINUTES() {
-
-                var min = date.getMinutes();
-                angle = ((Math.PI * 2) * (min / 60)) - ((Math.PI * 2) / 4);
-                ctx.lineWidth = 1.5;              // HAND WIDTH.
-
-                ctx.beginPath();
-                ctx.moveTo(canvas.width / 2, canvas.height / 2);  // START FROM CENTER.
-                // DRAW THE LENGTH.
-                ctx.lineTo((canvas.width / 2 + Math.cos(angle) * secHandLength / 1.1),      
-                    canvas.height / 2 + Math.sin(angle) * secHandLength / 1.1);
-
-                //color the hand
-                if ((nightHours>=0 && nightHours<=6) || (nightHours>=18 && nightHours<=23)){
-                    ctx.strokeStyle = '#ffffff'; 
-                }else{
-                    ctx.strokeStyle = '#000000'; 
-                }
-                ctx.stroke();
-            }
-
-            function SHOW_HOURS() {
-
-                var hour = date.getHours();
-                var min = date.getMinutes();
-                angle = ((Math.PI * 2) * ((hour * 5 + (min / 60) * 5) / 60)) - ((Math.PI * 2) / 4);
-                ctx.lineWidth = 1.5;              // HAND WIDTH.
-
-                ctx.beginPath();
-                ctx.moveTo(canvas.width / 2, canvas.height / 2);     // START FROM CENTER.
-                // DRAW THE LENGTH.
-                ctx.lineTo((canvas.width / 2 + Math.cos(angle) * secHandLength / 1.5),      
-                    canvas.height / 2 + Math.sin(angle) * secHandLength / 1.5);
-
-                //color the hand
-                if ((nightHours>=0 && nightHours<=6) || (nightHours>=18 && nightHours<=23)){
-                    ctx.strokeStyle = '#ffffff'; 
-                }else{
-                    ctx.strokeStyle = '#000000'; 
-                }
-                ctx.stroke();
-            }
-        }
+    /* Calculate time using offset */
+    var localOffset         = testDate.getTimezoneOffset() * 60000;
+    var utc                 = localOffset + localTime;
+    var offset              = offsetValue[0];
+    var timeZoneName        = offsetValue[1];
+    var currentTimeInZone   = utc + (3600000 * offset);
     
+    var finalDate           = new Date(currentTimeInZone);
+
+    /* These variables have been redeclared to display info about the selected country */
+    var selectedCountry     = $('#timeZones option:selected').text();
+    var presentDay          = days[finalDate.getDay()];
+    var presentMonth        = months[finalDate.getMonth()];
+    var presentDate         = finalDate.getDate();
+    var presentYear         = finalDate.getFullYear();
+    var selectedCountryTime = finalDate.getHours() + ":" + finalDate.getMinutes() + ":" + finalDate.getSeconds();
+
+    /* Return country info to Info Box */
+    document.getElementById('displayInfo').innerHTML = "<div style = 'padding-top:5px; padding-left:1px'>The time in " + selectedCountry + " is: <b>" + 
+    selectedCountryTime + "</b>. It is " + presentDay + ", " + presentMonth + " " +
+     presentDate + " " + presentYear + ". " + selectedCountry + " is on the <b>" + timeZoneName + 
+     "</b> time zone. </div>";
+   
+
+    showClock(finalDate);
+
+
+  }
+
+function showClock(date) {
+
+      // Canvas Set Up
+    var canvas           = document.getElementById('canvas');
+    var ctx              = canvas.getContext('2d');
+
+      
+    var angle;
+    var secHandLength    = 185;
+
+    var nightHours       = date.getHours();
+
+
+      /* Redraw Canvas every second to make clock tick*/
+      ctx.clearRect(0, 0, canvas.width, canvas.height);        
+
+      
+      drawCircle();
+      drawInnerCircle();
+      drawHourMarks();
+      drawSecondMarks();
+
+      displaySeconds();
+      displayMinutes();
+      displayHours();
+
+
+      function drawCircle() {
+
+          if ((nightHours>=0 && nightHours<=6) || (nightHours>=18 && nightHours<=23)){ 
+              ctx.fillStyle= "#000000";   
+          } else {
+              ctx.fillStyle= "#ffffff";
+          }
+              ctx.beginPath();
+              ctx.arc(canvas.width / 2, canvas.height / 2, canvas.width / 2 , 0, Math.PI * 2);
+              ctx.fill();
+
+      }
+      
+      function drawInnerCircle() {
+          ctx.beginPath();
+          ctx.arc(canvas.width / 2, canvas.height / 2, 2, 0, Math.PI * 2);
+          ctx.lineWidth = 3;
+          if ((nightHours>=0 && nightHours<=6) || (nightHours>=18 && nightHours<=23)){ 
+              ctx.fillStyle = '#ffffff';
+              ctx.strokeStyle = '#ffffff';
+          }else{
+              ctx.fillStyle = '#000000';
+              ctx.strokeStyle = '#000000';
+          }
+          ctx.stroke();
+      }
+
+      function drawHourMarks() {
+
+          for (var i = 0; i < 12; i++) {
+              angle = (i - 3) * (Math.PI * 2) / 12;       // THE ANGLE TO MARK.
+              ctx.lineWidth = 1;            // HAND WIDTH.
+              ctx.beginPath();
+
+              var x1 = (canvas.width / 2) + Math.cos(angle) * (secHandLength);
+              var y1 = (canvas.height / 2) + Math.sin(angle) * (secHandLength);
+              var x2 = (canvas.width / 2) + Math.cos(angle) * (secHandLength - (secHandLength / 7));
+              var y2 = (canvas.height / 2) + Math.sin(angle) * (secHandLength - (secHandLength / 7));
+
+              ctx.moveTo(x1, y1);
+              ctx.lineTo(x2, y2);
+
+              if ((nightHours>=0 && nightHours<=6) || (nightHours>=18 && nightHours<=23)){
+                  ctx.strokeStyle = '#ffffff';
+              }else{
+                  ctx.strokeStyle = '#000000';
+              }
+
+              ctx.stroke();
+          }
+      }
+
+      function drawSecondMarks() {
+
+          for (var i = 0; i < 60; i++) {
+              angle = (i - 3) * (Math.PI * 2) / 60;       // THE ANGLE TO MARK.
+              ctx.lineWidth = 1;            // HAND WIDTH.
+              ctx.beginPath();
+
+              var x1 = (canvas.width / 2) + Math.cos(angle) * (secHandLength);
+              var y1 = (canvas.height / 2) + Math.sin(angle) * (secHandLength);
+              var x2 = (canvas.width / 2) + Math.cos(angle) * (secHandLength - (secHandLength / 30));
+              var y2 = (canvas.height / 2) + Math.sin(angle) * (secHandLength - (secHandLength / 30));
+
+              ctx.moveTo(x1, y1);
+              ctx.lineTo(x2, y2);
+
+              ctx.strokeStyle = '#C4D1D5';
+              ctx.stroke();
+          }
+      }
+
+      function displaySeconds() {
+
+          var sec = date.getSeconds();
+          angle = ((Math.PI * 2) * (sec / 60)) - ((Math.PI * 2) / 4);
+          ctx.lineWidth = 0.5;              // HAND WIDTH.
+
+          ctx.beginPath();
+          // START FROM CENTER OF THE CLOCK.
+          ctx.moveTo(canvas.width / 2, canvas.height / 2);   
+          // DRAW THE LENGTH.
+          ctx.lineTo((canvas.width / 2 + Math.cos(angle) * secHandLength),
+              canvas.height / 2 + Math.sin(angle) * secHandLength);
+
+          // DRAW THE TAIL OF THE SECONDS HAND.
+          ctx.moveTo(canvas.width / 2, canvas.height / 2);    // START FROM CENTER.
+          // DRAW THE LENGTH.
+          ctx.lineTo((canvas.width / 2 - Math.cos(angle) * 20),
+              canvas.height / 2 - Math.sin(angle) * 20);
+
+          ctx.strokeStyle = '#D33C37';        // COLOR OF THE HAND.
+          ctx.stroke();
+      }
+
+      function displayMinutes() {
+
+          var min = date.getMinutes();
+          angle = ((Math.PI * 2) * (min / 60)) - ((Math.PI * 2) / 4);
+          ctx.lineWidth = 1.5;              // HAND WIDTH.
+
+          ctx.beginPath();
+          ctx.moveTo(canvas.width / 2, canvas.height / 2);  // START FROM CENTER.
+          // DRAW THE LENGTH.
+          ctx.lineTo((canvas.width / 2 + Math.cos(angle) * secHandLength / 1.1),      
+              canvas.height / 2 + Math.sin(angle) * secHandLength / 1.1);
+
+          //color the hand
+          if ((nightHours>=0 && nightHours<=6) || (nightHours>=18 && nightHours<=23)){
+              ctx.strokeStyle = '#ffffff'; 
+          }else{
+              ctx.strokeStyle = '#000000'; 
+          }
+          ctx.stroke();
+      }
+
+      function displayHours() {
+
+          var hour = date.getHours();
+          var min = date.getMinutes();
+          angle = ((Math.PI * 2) * ((hour * 5 + (min / 60) * 5) / 60)) - ((Math.PI * 2) / 4);
+          ctx.lineWidth = 1.5;              
+
+          ctx.beginPath();
+          ctx.moveTo(canvas.width / 2, canvas.height / 2);     
+          
+          ctx.lineTo((canvas.width / 2 + Math.cos(angle) * secHandLength / 1.5),      
+          canvas.height / 2 + Math.sin(angle) * secHandLength / 1.5);
+
+          /* Make color relative to night and day */
+          if ((nightHours>=0 && nightHours<=6) || (nightHours>=18 && nightHours<=23)){
+              ctx.strokeStyle = '#ffffff'; 
+          }else{
+              ctx.strokeStyle = '#000000'; 
+          }
+          ctx.stroke();
+      }
+  }
+  
+        
