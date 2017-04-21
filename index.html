@@ -29,7 +29,38 @@
 		<div class="container">
 			<canvas id="canvas" width="410" height="410" class="clock"></canvas> 
 
+		</div>
 
+		<div class="side-banners-1">
+			<div class="banner banner0">
+				<h3>Country List</h3>
+				<div class="banner-text">
+					<div class="time-zone-opts blue semi-square">
+						<select name="zones" id="timeZones">
+							<option value="0" id="wat">Tokyo, Japan</option>
+							<option value="1" id="cet">New York, US</option>
+							<option value="2" id="cst">SaoPaolo, Brazil</option>
+							<option value="3" id="eat">East Afircan Time</option>
+							<option value="4" id="edt">Eastern Daylight Time</option>
+	                        <option value="5" id="fijiTime">Fiji Time</option>
+							<option value="6" id="gmt">GMT - Greenwich Mean Time</option>
+							<option value="7" id="norfolkTime">Norfolk Time</option>
+							<option value="8" id="nepalTime">Nepal Time</option>
+							<option value="9" id="pyongyangTime">Pyongyang Time</option>
+	                        <option value="10" id="westSamoa">West Samoa Time</option>
+	                        <option value="11" id="WAST">WAST - West Africa Summer Time</option>
+						</select>
+
+						<button class="btn" id="btnChange" onclick="check()">Submit</button>
+						<button class="btn" id="btnReverse"onclick="refresh()"><a href="index.html">Refresh</a></button>
+					</div>
+				</div>
+			</div>	
+
+			<div class="banner banner1">
+				<h3>Time Zone Info</h3>
+				<span id="displayInfo"></span>
+			</div>
 		</div>
 	
 
@@ -63,12 +94,8 @@
 				<p>This is a paragraph.</p>
 				<p>This is another paragraph.</p>
 
-			<span id="displayInfo"></span>
+			
 
-			<!-- <span id="timeZoneName"></span>-->
-			<!--<span id="digitalTime"></span>-->
-			<!--<span id="dateTab"></span>-->
-			<!--<span id="offsetTab"></span>-->
 
 		</div>	
 

@@ -1,6 +1,12 @@
 body {
 	margin: 0;
 }
+select {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    text-indent: 1px;
+    text-overflow: '';
+}
 /*Main CSS*/
 .main{
 	background-image: url("../images/clock6.jpg");
@@ -53,19 +59,85 @@ body {
 	/*background-color: #333;*/
 }
 
-/* Banner */
-.banner{
-	float: left;
+/*Side Bar Widgets*/
+.main .side-banners-1{
+	position: absolute;
+	top: 12%;
 
 }
 
+.side-banners-1 h3{
+	text-shadow: 0 -1px 1px rgba(0,0,0,0.25);
+	padding-left: 95px;
+	
+}
+
+/* Banner */
+.banner{
+	width:270px;
+	height: 300px; 
+	-moz-box-shadow: 0 1px 3px rgba(0,0,0,0.5);
+	-webkit-box-shadow: 0 1px 3px rgba(0,0,0,0.5);
+	-moz-border-radius: 15px;
+	-webkit-border-radius: 15px;
+	float: left;
+}
+
 .banner0{
-	background: url("../images/banners/");
+	background: #C6CC10 url("../images/banners/banner5.png") no-repeat;
+	color: #37535B;
+	font-family: "Trebuchet MS";
 
 }
 
 .banner1{
-
+	background: #31B3DA url("../images/banners/banner1.png") no-repeat;
+	color:#37535B;
+	font-family: "Arial Narrow";
 }
+
+.banner-text{
+	font-size: 14px;
+	padding-left: 5px;
+	padding-top: 35px;
+}
+
+.time-zone-opts{
+	background: url(http://i62.tinypic.com/15xvbd5.png) no-repeat 96% 0;
+    height: 29px;
+    width: 240px;
+    /*overflow: hidden;*/
+}
+
+.time-zone-opts select {
+   background: transparent;
+   border: none;
+   font-size: 14px;
+   height: 29px;
+   padding: 5px; /* If you add too much padding here, the options won't show in IE */
+   width: 240px;
+}
+
+.time-zone-opts button{
+	border-radius: 10px;
+	font-size: 14px;
+	color: white;
+	text-shadow: 0 1px 1px rgba(0, 0, 0, 0.2);
+	padding: 10px;
+	margin-top: 30px;
+	width: 110px;
+	background: background-color:rgba(204,204,204,0.5);
+}
+
+.semi-square {
+   -webkit-border-radius: 5px;
+   -moz-border-radius: 5px;
+   border-radius: 5px;
+}
+
+.blue{ 
+	background-color: #ffffff; 
+}
+
 
 
