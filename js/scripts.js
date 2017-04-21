@@ -149,25 +149,28 @@ function larg(can){
 
             function OUTER_DIAL1() {
 
-                if ((nightHours>=0 && nightHours<=6) || (nightHours>=18 && nightHours<=23)){    
-                    ctx.fillStyle= "#000000";
-                    ctx.beginPath();
-                    ctx.arc(canvas.width / 2, canvas.height / 2, canvas.width / 2 , 0, Math.PI * 2);
-                    ctx.fill();
-                }else{
+                if ((nightHours>=0 && nightHours<=6) || (nightHours>=18 && nightHours<=23)){ 
+                    ctx.fillStyle= "#000000";   
+                } else {
                     ctx.fillStyle= "#ffffff";
+                }
                     ctx.beginPath();
                     ctx.arc(canvas.width / 2, canvas.height / 2, canvas.width / 2 , 0, Math.PI * 2);
                     ctx.fill();
-                }
+
             }
             
             function CENTER_DIAL() {
                 ctx.beginPath();
                 ctx.arc(canvas.width / 2, canvas.height / 2, 2, 0, Math.PI * 2);
                 ctx.lineWidth = 3;
-                ctx.fillStyle = '#000000';
-                ctx.strokeStyle = '#000000';
+                if ((nightHours>=0 && nightHours<=6) || (nightHours>=18 && nightHours<=23)){ 
+                    ctx.fillStyle = '#ffffff';
+                    ctx.strokeStyle = '#ffffff';
+                }else{
+                    ctx.fillStyle = '#000000';
+                    ctx.strokeStyle = '#000000';
+                }
                 ctx.stroke();
             }
 
@@ -186,7 +189,12 @@ function larg(can){
                     ctx.moveTo(x1, y1);
                     ctx.lineTo(x2, y2);
 
-                    ctx.strokeStyle = '#000000';
+                    if ((nightHours>=0 && nightHours<=6) || (nightHours>=18 && nightHours<=23)){
+                        ctx.strokeStyle = '#ffffff';
+                    }else{
+                        ctx.strokeStyle = '#000000';
+                    }
+
                     ctx.stroke();
                 }
             }
@@ -246,7 +254,12 @@ function larg(can){
                 ctx.lineTo((canvas.width / 2 + Math.cos(angle) * secHandLength / 1.1),      
                     canvas.height / 2 + Math.sin(angle) * secHandLength / 1.1);
 
-                ctx.strokeStyle = '#000000';  // COLOR OF THE HAND.
+                //color the hand
+                if ((nightHours>=0 && nightHours<=6) || (nightHours>=18 && nightHours<=23)){
+                    ctx.strokeStyle = '#ffffff'; 
+                }else{
+                    ctx.strokeStyle = '#000000'; 
+                }
                 ctx.stroke();
             }
 
@@ -263,7 +276,12 @@ function larg(can){
                 ctx.lineTo((canvas.width / 2 + Math.cos(angle) * secHandLength / 1.5),      
                     canvas.height / 2 + Math.sin(angle) * secHandLength / 1.5);
 
-                ctx.strokeStyle = '#000000';   // COLOR OF THE HAND.
+                //color the hand
+                if ((nightHours>=0 && nightHours<=6) || (nightHours>=18 && nightHours<=23)){
+                    ctx.strokeStyle = '#ffffff'; 
+                }else{
+                    ctx.strokeStyle = '#000000'; 
+                }
                 ctx.stroke();
             }
         }
