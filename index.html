@@ -33,9 +33,10 @@
 			<div class="banner banner0">
 				<h3>Country List</h3>
 				<div class="banner-text">
-					<div class="time-zone-opts blue semi-square">
+					<div class="time-zone-opts white semi-square">
 						<select name="zones" id="timeZones">
-							<option value="0" id="JST">Tokyo, Japan</option> utc+9
+							<option value="null" id="JST">-- Please select a country --</option>
+							<option value="0" id="JST">Tokyo, Japan</option> 
 							<option value="1" id="EDT">New York, US</option> utc-4
 							<option value="2" id="KST">Seoul, Korea</option>  utc+9
 							<option value="3" id="CST">Beijing, China</option> utc+8
@@ -58,7 +59,7 @@
 						</select>
 
 						<button class="btn" id="btnChange" onclick="check()">View Info</button>
-						<button class="btn" id="btnReverse"onclick="location.href = 'clocks.html'">View multi clocks</button>
+						<button class="btn" id="btnReverse"onclick="location.href = 'clocks.html'">View all</button>
 
 					</div>
 				</div>

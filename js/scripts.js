@@ -1,17 +1,34 @@
 
 var id;
-//#565658
+var curDate = new Date;
+
 window.onload = function () {
-
         id = setInterval(showClockOnLoad, 1000);
-
-        //showClockOnLoad();
+        displayCurrentInfo();
         function showClockOnLoad() {
-        var curDate = new Date;
         showClock(curDate);
     }
 }     
 
+function displayCurrentInfo(){
+
+    var selectedCountry = "Lagos";
+    var timeZoneName = "UTC+1";
+    var presentDay = days[curDate.getDay()];
+    var presentMonth = months[curDate.getMonth()];
+    var presentDate = curDate.getDate();
+    var presentYear = curDate.getFullYear();
+    var selectedCountryTime = curDate.getHours() + ":" + curDate.getMinutes() + ":" + curDate.getSeconds();
+
+    document.getElementById('displayInfo').innerHTML = "<div style = 'padding-top:5px; padding-left:1px'>The time in " + selectedCountry + " is: <b>" + 
+    selectedCountryTime + "</b>. It is " + presentDay + ", " + presentMonth + " " +
+     presentDate + " " + presentYear + ". " + selectedCountry + " is on the <b>" + timeZoneName + 
+     "</b> time zone. </div>";
+
+}
+
+var days = ["Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"];
+var months = ["January", "February","March","April", "May", "June", "July", "August", "September", "October", "November", "December"];
 
 var timeZoneOffsets = {
     "WAT": [1,"UTC+1"],
@@ -54,8 +71,7 @@ function getCountryTime(){
     //CHANGE CALCULATED TIME TO A READABLE DATE/TIME STRING
     var finalDate = new Date(currentTimeInZone);
 
-    var days = ["Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"];
-    var months = ["January", "February","March","April", "May", "June", "July", "August", "September", "October", "November", "December"];
+    
     
     var selectedCountry = $('#timeZones option:selected').text();
     var presentDay = days[finalDate.getDay()];
