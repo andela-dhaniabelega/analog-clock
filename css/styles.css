@@ -7,6 +7,29 @@ select {
     text-indent: 1px;
     text-overflow: '';
 }
+
+table{
+	padding-top: 60px;
+	padding-left: 60px;
+	padding-right:10px;
+	padding-bottom: 20px;
+	font-family: "Trebuchet MS";
+}
+
+th{
+	text-align: left;
+	padding-left: 15px;
+	padding-bottom: 10px;
+}
+
+tr.spacer{
+	margin-bottom: 50px;
+}
+
+
+p{
+	padding-bottom: 5px;
+}
 /*Main CSS*/
 .main{
 	background-image: url("../images/clock6.jpg");
@@ -158,6 +181,61 @@ select {
 .banner-text1{
 	padding-top: 50px;
 	padding-left: 5px;
+}
+
+/* MULTIPLE CLOCK PAGE */
+.clocks-main{
+	background-image: url("../images/clock1.jpg");
+	position: relative;
+	/*background-repeat:no-repeat;*/
+	-webkit-background-size:cover;
+	-moz-background-size:cover;
+	-o-background-size:cover;
+	background-size:cover;
+	background-position:center;
+}
+
+.purple{
+	background:purple; 
+	border-radius:5px; 
+	background-size:10px; 
+	padding:3px;
+	color: #B759E1;
+}
+
+.blue{
+	background: #0061B7;
+	border-radius:5px; 
+	background-size:10px; 
+	padding:3px;
+}
+
+.red{
+	background: #EA4615;
+	border-radius:5px; 
+	background-size:10px; 
+	padding:3px;
+}
+
+.yellow{
+	background: #F2D300;
+	border-radius:5px; 
+	background-size:10px; 
+	padding:3px;
+}
+
+.green{
+	background: #4CB42A;
+	border-radius:5px; 
+	background-size:10px; 
+	padding:3px;
+}
+
+.orange{
+	background: #FF9E27;
+	border-radius:5px; 
+	background-size:10px; 
+	padding:3px;
 }
 
 

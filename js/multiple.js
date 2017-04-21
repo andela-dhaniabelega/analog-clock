@@ -1,145 +1,203 @@
-
-var id;
-//#565658
 window.onload = function () {
-
-        id = setInterval(showClockOnLoad, 1000);
-
-        //showClockOnLoad();
-        function showClockOnLoad() {
-        var curDate = new Date;
-        showClock(curDate);
-    }
-}     
-
-
-var timeZoneOffsets = {
-    "WAT": [1,"UTC+1"],
-    "CST": [8,"UTC+8"],
-    "CEST": [2,"UTC+2"],
-    "JST": [9,"UTC+9"],
-    "EDT": [-4,"EDT-4"],
-    "KST": [9,"UTC+9"],
-    "ICT": [7,"UTC+7"],
-    "BST": [1,"UTC+1"],
-    "SGT": [8,"UTC+8"],
-    "MYT": [8,"UTC+8"],
-    "TRT": [3,"UTC+3"],
-    "NZST": [12,"UTC+12"],
-    "GST": [4,"UTC+4"]
+	showNewYork();
+	showKorea();
+	showJapan();
+	showChina();
+	showItaly();
+	showSingapore();
+	showLondon();
+	showThailand();
+	showAmsterdam();
+	showDuabi();
+	showParis();
+	showTurkey();
+	showSpain();
+	showTaiwan();
+	showNewZealand();
+	showAustria();
+	showCzech();
+	showMalaysia();
+	showNigeria();
 }
 
+var newYorkOffset 		= -4;
+var koreaOffset 		= 9;
+var japanOffset 		= 9;
+var chinaOffset 		= 8;
+var italyOffset 		= 2;
+var singaporeOffset 	= 8;
+var londonOffset 		= 1;
+var thailandOffset 		= 7;
+var amsterdamOffset 	= 2;
+var dubaiOffset 		= 4;
+var parisOffset 		= 2;
+var turkeyOffset 		= 3;
+var spainOffset 		= 2;
+var taiwanOffset 		= 8;
+var newZealandOffset 	= 12;
+var austriaOffset 		= 2;
+var czechOffset 		= 2;
+var malaysiaOffset 		= 8;
+var nigeriaOffset	 	= 1;
 
 
-function getCountryTime(){
-    var timeZoneElement = document.getElementById("timeZones");
-    var timeZone = Number(timeZoneElement.value);
-    var tZoneoffset = returnTimeZoneOffset(timeZone);
-    //OBTAIN THE CURRENT DATE AND TIME
+function getCountryTime(offset){
     var testDate = new Date;
     var localTime = testDate.getTime();
-
-    //FIND THE LOCAL TIME-ZONE OFFSET AND MULTIPLY BY (60000) to convert from minutes to millissecconds
     var localOffset = testDate.getTimezoneOffset() * 60000;
-
-    //OBTAIN THE CURRENT UTC TIME BY ADDING LOCAL TIME ZONE OFFSET TO THE LOCAL TIME
     var utc = localOffset + localTime;
-    /*Note: localOffset might return positive or negative depending on if the
-        local time-zone is before or behinf the UTC time*/
-    var offset = tZoneoffset[0];
-    var timeZoneName = tZoneoffset[1];
-
     var currentTimeInZone = utc + (3600000 * offset);
-    /*Note: 360000 represents a converting factor to convert from hours to milliseconds*/
-    //CHANGE CALCULATED TIME TO A READABLE DATE/TIME STRING
     var finalDate = new Date(currentTimeInZone);
 
-    var days = ["Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"];
-    var months = ["January", "February","March","April", "May", "June", "July", "August", "September", "October", "November", "December"];
-    
-    var selectedCountry = $('#timeZones option:selected').text();
-    var presentDay = days[finalDate.getDay()];
-    var presentMonth = months[finalDate.getMonth()];
-    var presentDate = finalDate.getDate();
-    var presentYear = finalDate.getFullYear();
-    var selectedCountryTime = finalDate.getHours() + ":" + finalDate.getMinutes() + ":" + finalDate.getSeconds();
+    return finalDate;
+ }
 
-    document.getElementById('displayInfo').innerHTML = "<div style = 'padding-top:5px; padding-left:1px'>The time in " + selectedCountry + " is: <b>" + 
-    selectedCountryTime + "</b>. It is " + presentDay + ", " + presentMonth + " " +
-     presentDate + " " + presentYear + ". " + selectedCountry + " is on the <b>" + timeZoneName + 
-     "</b> time zone. </div>";
-   
+ newYorkDate 	= getCountryTime(newYorkOffset);
+ koreaDate 		= getCountryTime(koreaOffset);
+ japanDate 		= getCountryTime(japanOffset);
+ chinaDate 		= getCountryTime(chinaOffset);
+ italyDate 		= getCountryTime(italyOffset);
+ singaporeDate 	= getCountryTime(singaporeOffset);
+ londonDate 	= getCountryTime(londonOffset);
+ thailandDate 	= getCountryTime(thailandOffset);
+ amsterdamDate 	= getCountryTime(amsterdamOffset);
+ dubaiDate 		= getCountryTime(dubaiOffset);
+ parisDate 		= getCountryTime(parisOffset);
+ turkeyDate 	= getCountryTime(turkeyOffset);
+ spainDate 		= getCountryTime(spainOffset);
+ taiwanDate		= getCountryTime(taiwanOffset);
+ newZealandDate = getCountryTime(newZealandOffset);
+ austriaDate 	= getCountryTime(austriaOffset);
+ czechDate 		= getCountryTime(czechOffset);
+ malaysiaDate 	= getCountryTime(malaysiaOffset);
+ nigeriaDate 	= getCountryTime(nigeriaOffset);
 
-    showClock(finalDate);
+ function showNewYork(){
+ 	var newYorkCanvas = document.getElementById('canvas1');
+    var newYorkCtx = newYorkCanvas.getContext('2d');
+    showClock(newYorkDate,newYorkCtx,newYorkCanvas);
+    //setInterval( function() {showClock(newYorkTime,newYorkCtx,newYorkCanvas); }, 1000 );
+ }
 
+ function showKorea(){
+ 	var koreaCanvas = document.getElementById('canvas2');
+    var koreaCtx = koreaCanvas.getContext('2d');
+    showClock(koreaDate,koreaCtx,koreaCanvas);
+    //setInterval( function() { showClock(koreaTime,koreaCtx,koreaCanvas); }, 1000 );
+ }
 
-  }
+ function showJapan(){
+ 	var japanCanvas = document.getElementById('canvas3');
+ 	var japanCtx = japanCanvas.getContext('2d');
+ 	showClock(japanDate,japanCtx,japanCanvas);
+ }
 
+function showChina(){
+	var chinaCanvas = document.getElementById('canvas4');
+ 	var chinaCtx = chinaCanvas.getContext('2d');
+ 	showClock(chinaDate,chinaCtx,chinaCanvas);
+ 	
+ }
 
- function returnTimeZoneOffset(value) {
-    switch(value){
-        case 0: return timeZoneOffsets.JST;
-        case 1: return timeZoneOffsets.EDT;
-        case 2: return timeZoneOffsets.KST;
-        case 3: return timeZoneOffsets.CST;
-        case 4: return timeZoneOffsets.ICT;
-        case 5: return timeZoneOffsets.WAT;
-        case 6: return timeZoneOffsets.BST;
-        case 7: return timeZoneOffsets.CEST;
-        case 8: return timeZoneOffsets.SGT;
-        case 9: return timeZoneOffsets.MYT;
-        case 10: return timeZoneOffsets.TRT;
-        case 11: return timeZoneOffsets.CEST;
-        case 12: return timeZoneOffsets.CEST;
-        case 13: return timeZoneOffsets.CEST;
-        case 14: return timeZoneOffsets.CST;
-        case 15: return timeZoneOffsets.NZST;
-        case 16: return timeZoneOffsets.CEST;
-        case 17: return timeZoneOffsets.CEST;
-        case 19: return timeZoneOffsets.GST;
-      }
-}
+ function showItaly(){
+ 	var italyCanvas = document.getElementById('canvas5');
+ 	var italyCtx = italyCanvas.getContext('2d');
+ 	showClock(italyDate,italyCtx,italyCanvas);
+ }
 
+ function showSingapore(){
+ 	var singaporeCanvas = document.getElementById('canvas6');
+ 	var singaporeCtx = singaporeCanvas.getContext('2d');
+ 	showClock(singaporeDate,singaporeCtx,singaporeCanvas);
+ 	
+ }
 
-/* Stops the clock from appearing and disappearing */
-function check() {
-    //var zonesElem = document.getElementById("outputTab").style;
-    //zonesElem.visibility = "visible";
-    //var temp = function() {return 1;}
-    //var temp = window.onload;
-    clearInterval(id);
-    window.onload = setInterval(getCountryTime,1000);
-}
+ function showLondon(){
+ 	var londonCanvas = document.getElementById('canvas7');
+ 	var londonCtx = londonCanvas.getContext('2d');
+ 	showClock(londonDate,londonCtx,londonCanvas); 
+ }
 
-function clockLooper(){
-    var myArr = [];
-    $("input:checkbox[name=mult]:checked").each(function(){
-        myArr.push($(this).val());
-    });
+ function showThailand(){
+ 	var thailandCanvas = document.getElementById('canvas8');
+ 	var thailandCtx = thailandCanvas.getContext('2d');
+ 	showClock(thailandDate,thailandCtx,thailandCanvas); 
+ }
 
-    for (i=0; i < myArr.LENGTH; i++){
-        setInterval(getCountryTime(myArr[i]));
-    }
+ function showAmsterdam(){
+ 	var amsterdamCanvas = document.getElementById('canvas9');
+ 	var amsterdamCtx = amsterdamCanvas.getContext('2d');
+ 	showClock(amsterdamDate,amsterdamCtx,amsterdamCanvas); 
+ }
 
-}
+ function showDuabi(){
+ 	var dubaiCanvas = document.getElementById('canvas10');
+ 	var dubaiCtx = dubaiCanvas.getContext('2d');
+ 	showClock(dubaiDate,dubaiCtx,dubaiCanvas); 
+ }
 
-function larg(can){
-    $(window).resize(function () {
-        width = $(can).parent().width();
-        can.width = width;
-        canCtx.fillRect(0, 0, width, 410);
-    });
-}
+ function showParis(){
+ 	var parisCanvas = document.getElementById('canvas11');
+ 	var parisCtx = parisCanvas.getContext('2d');
+ 	showClock(parisDate,parisCtx,parisCanvas); 
 
-        function showClock(date) {
+ }
+
+ function showTurkey(){
+ 	var turkeyCanvas = document.getElementById('canvas12');
+ 	var turkeyCtx =  turkeyCanvas.getContext('2d');
+ 	showClock(turkeyDate,turkeyCtx, turkeyCanvas); 
+ }
+
+ function showSpain(){
+ 	var spainCanvas = document.getElementById('canvas13');
+ 	var spainCtx =  spainCanvas.getContext('2d');
+ 	showClock(spainDate,spainCtx, spainCanvas); 
+ }
+
+ function showTaiwan(){
+ 	var taiwanCanvas = document.getElementById('canvas14');
+ 	var taiwanCtx =   taiwanCanvas.getContext('2d');
+ 	showClock(taiwanDate, taiwanCtx, taiwanCanvas); 
+ }
+
+ function showNewZealand(){
+ 	var newZealandCanvas = document.getElementById('canvas15');
+ 	var newZealandCtx =   newZealandCanvas.getContext('2d');
+ 	showClock(newZealandDate, newZealandCtx, newZealandCanvas); 
+ }
+
+ function showAustria(){
+ 	var austriaCanvas = document.getElementById('canvas16');
+ 	var austriaCtx =   austriaCanvas.getContext('2d');
+ 	showClock(austriaDate, austriaCtx, austriaCanvas); 
+ }
+
+ function showCzech(){
+ 	var czechCanvas = document.getElementById('canvas17');
+ 	var czechCtx =   czechCanvas.getContext('2d');
+ 	showClock(czechDate, czechCtx, czechCanvas); 
+ }
+
+ function showMalaysia(){
+ 	var malaysiaCanvas = document.getElementById('canvas18');
+ 	var malaysiaCtx =   malaysiaCanvas.getContext('2d');
+ 	showClock(malaysiaDate, malaysiaCtx, malaysiaCanvas); 
+ }
+
+ function showNigeria(){
+ 	var nigeriaCanvas = document.getElementById('canvas19');
+ 	var nigeriaCtx =   nigeriaCanvas.getContext('2d');
+ 	showClock(nigeriaDate, nigeriaCtx, nigeriaCanvas); 
+ }
+
+ function showClock(date, ctx, canvas) {
 
             // Canvas Set Up
-            var canvas = document.getElementById('canvas');
-            var ctx = canvas.getContext('2d');
-
+            
             
             var angle;
-            var secHandLength = 185;
+            var secHandLength = 80;
 
             var nightHours = date.getHours();
 
@@ -297,3 +355,4 @@ function larg(can){
             }
         }
     
+
