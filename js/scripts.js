@@ -104,8 +104,9 @@ function larg(can){
   */
 function getCountryTime(){
     var getSelectedValue    = document.getElementById("timeZones");
+    var getSelectedName     = document.getElementById("timeZones").name;
     var timeZone            = getSelectedValue.value;
-    var selectedCountry    = $('#timeZones option:selected').text();
+    var selectedCountry     = $('#timeZones option:selected').text();
 
     if(timeZone == 'null'){
         timeZone = 5;
@@ -133,13 +134,23 @@ function getCountryTime(){
     var presentDate         = finalDate.getDate();
     var presentYear         = finalDate.getFullYear();
     var selectedCountryTime = finalDate.getHours() + ":" + finalDate.getMinutes() + ":" + finalDate.getSeconds();
-    var timeAbbrev          = Object.keys(timeZoneOffsets)[timeZone];
+    
 
     /* Return country info to Info Box */
     document.getElementById('displayInfo').innerHTML = "<div style = 'padding-top:5px; padding-left:1px'>The time in " + selectedCountry + " is: <b>" + 
     selectedCountryTime + "</b>. It is " + presentDay + ", " + presentMonth + " " +
-     presentDate + " " + presentYear + ". " + selectedCountry + " is on the <b>" + timeZoneName + "</b> time zone " + 
-     " OR <b>" + timeAbbrev + " time zone </b> </div";
+     presentDate + " " + presentYear + ". " + selectedCountry + " is on the <b>" + timeZoneName + "</b> time zone </div>" 
+    
+
+     /* Determine hours ahead or behind */
+     if(timeZoneOffsets.WAT[0]===offsetValue[0]){
+             document.getElementById('displayAddInfo').innerHTML = "This means you are In your time Zone"
+        }else if (offset < 1){
+            document.getElementById('displayAddInfo').innerHTML  =  "This means it is " + Math.abs(offset-1) + " hour(s) behind your location"
+        }else{
+            document.getElementById('displayAddInfo').innerHTML  =  "This means it is " + Math.floor(offset-1) +" hour(s) "+(60 *(offset - Math.floor(offset))) +" mins  ahead of your location";
+        }
+     
    
 
     showClock(finalDate);

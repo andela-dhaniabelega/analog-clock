@@ -29,7 +29,7 @@ tr.spacer{
 }
 
 
-p{
+table p{
 	padding-bottom: 5px;
 }
 
@@ -177,6 +177,11 @@ p{
 
 .banner-text1{
 	padding-top: 50px;
+	padding-left: 5px;
+}
+
+.banner-text2{
+	padding-top: 30px;
 	padding-left: 5px;
 }
 
