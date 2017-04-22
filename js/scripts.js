@@ -104,7 +104,16 @@ function larg(can){
   */
 function getCountryTime(){
     var getSelectedValue    = document.getElementById("timeZones");
-    var timeZone            = Number(getSelectedValue.value);
+    var timeZone            = getSelectedValue.value;
+    var selectedCountry    = $('#timeZones option:selected').text();
+
+    if(timeZone == 'null'){
+        timeZone = 5;
+        selectedCountry = 'Lagos';
+    }else{
+        timeZone = Number(getSelectedValue.value);
+    }
+
     var offsetValue         = returnTimeZoneOffset(timeZone);
     var testDate            = new Date;
     var localTime           = testDate.getTime();
@@ -119,18 +128,18 @@ function getCountryTime(){
     var finalDate           = new Date(currentTimeInZone);
 
     /* These variables have been redeclared to display info about the selected country */
-    var selectedCountry     = $('#timeZones option:selected').text();
     var presentDay          = days[finalDate.getDay()];
     var presentMonth        = months[finalDate.getMonth()];
     var presentDate         = finalDate.getDate();
     var presentYear         = finalDate.getFullYear();
     var selectedCountryTime = finalDate.getHours() + ":" + finalDate.getMinutes() + ":" + finalDate.getSeconds();
+    var timeAbbrev          = Object.keys(timeZoneOffsets)[timeZone];
 
     /* Return country info to Info Box */
     document.getElementById('displayInfo').innerHTML = "<div style = 'padding-top:5px; padding-left:1px'>The time in " + selectedCountry + " is: <b>" + 
     selectedCountryTime + "</b>. It is " + presentDay + ", " + presentMonth + " " +
-     presentDate + " " + presentYear + ". " + selectedCountry + " is on the <b>" + timeZoneName + 
-     "</b> time zone. </div>";
+     presentDate + " " + presentYear + ". " + selectedCountry + " is on the <b>" + timeZoneName + "</b> time zone " + 
+     " OR <b>" + timeAbbrev + " time zone </b> </div";
    
 
     showClock(finalDate);
